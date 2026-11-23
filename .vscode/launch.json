@@ -1,0 +1,50 @@
+{
+  "version": "0.2.0",
+
+  // One entry per language. VS Code cannot route a single entry to three
+  // different debug adapters -- "type" selects the adapter before any
+  // variable is resolved, so it cannot depend on the open file. Pressing F5
+  // shows this list, and VS Code then remembers your choice for the
+  // workspace, so after the first pick it is a single keystroke.
+  "configurations": [
+    {
+      "name": "Debug C++",
+      "type": "cppdbg",
+      "request": "launch",
+      "program": "${workspaceFolder}/build/cpp/app",
+      "args": [],
+      "stopAtEntry": false,
+      "cwd": "${workspaceFolder}/cpp",
+      "environment": [],
+      "externalConsole": false,
+      "console": "integratedTerminal",
+      "MIMode": "gdb",
+      "miDebuggerPath": "/usr/bin/gdb",
+      "setupCommands": [
+        {
+          "description": "Enable pretty-printing for gdb",
+          "text": "-enable-pretty-printing",
+          "ignoreFailures": true
+        }
+      ],
+      "preLaunchTask": "C++: Build"
+    },
+    {
+      "name": "Debug Java",
+      "type": "java",
+      "request": "launch",
+      "mainClass": "Main",
+      "cwd": "${workspaceFolder}/java",
+      "console": "integratedTerminal"
+    },
+    {
+      "name": "Debug Python",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}/python/main.py",
+      "cwd": "${workspaceFolder}/python",
+      "console": "integratedTerminal",
+      "justMyCode": true
+    }
+  ]
+}

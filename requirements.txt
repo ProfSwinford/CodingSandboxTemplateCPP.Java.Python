@@ -1,0 +1,8 @@
+# Python packages for this course.
+# Uncomment what you need, then rebuild the container, or run:
+#   bash .devcontainer/setup.sh
+#
+# numpy
+# pandas
+# matplotlib
+# pytest

@@ -1,0 +1,11 @@
+# Keep shell scripts and config LF-only so they still run after a Windows
+# checkout or zip round-trip. CRLF breaks "bash script.sh" inside the container.
+* text=auto eol=lf
+
+*.sh       text eol=lf
+Dockerfile text eol=lf
+*.json     text eol=lf
+*.cpp      text eol=lf
+*.h        text eol=lf
+*.java     text eol=lf
+*.py       text eol=lf

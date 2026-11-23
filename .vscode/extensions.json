@@ -1,0 +1,13 @@
+{
+  "recommendations": [
+    "ms-vscode.cpptools",
+    "vscjava.vscode-java-pack",
+    "ms-python.python",
+    "ms-python.vscode-pylance",
+    "ms-python.debugpy"
+  ],
+  "unwantedRecommendations": [
+    "github.copilot",
+    "github.copilot-chat"
+  ]
+}

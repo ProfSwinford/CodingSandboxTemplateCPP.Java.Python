@@ -1,0 +1,15 @@
+# Build output
+build/
+*.class
+*.o
+*.out
+a.out
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+
+# Editor / OS
+.DS_Store
+Thumbs.db

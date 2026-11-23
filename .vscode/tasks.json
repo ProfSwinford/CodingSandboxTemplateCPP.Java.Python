@@ -1,0 +1,66 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "C++: Build",
+      "detail": "Compiles every .cpp under cpp/ (recursively) into build/cpp/app",
+      "type": "shell",
+      "command": "mkdir -p build/cpp && g++ -g -Wall -Wextra -std=c++17 -Icpp $(find cpp -name '*.cpp') -o build/cpp/app",
+      "options": {
+        "cwd": "${workspaceFolder}",
+        "shell": { "executable": "/bin/bash", "args": ["-c"] }
+      },
+      "group": { "kind": "build", "isDefault": true },
+      "problemMatcher": ["$gcc"],
+      "presentation": { "reveal": "silent", "clear": true }
+    },
+    {
+      "label": "C++: Run",
+      "type": "shell",
+      "command": "../build/cpp/app",
+      "options": { "cwd": "${workspaceFolder}/cpp" },
+      "dependsOn": "C++: Build",
+      "problemMatcher": [],
+      "presentation": { "reveal": "always", "panel": "dedicated", "clear": true }
+    },
+
+    {
+      "label": "Java: Build",
+      "detail": "Compiles every .java under java/ (recursively) into build/java",
+      "type": "shell",
+      "command": "mkdir -p build/java && javac -g -d build/java $(find java -name '*.java')",
+      "options": {
+        "cwd": "${workspaceFolder}",
+        "shell": { "executable": "/bin/bash", "args": ["-c"] }
+      },
+      "group": "build",
+      "problemMatcher": ["$javac"],
+      "presentation": { "reveal": "silent", "clear": true }
+    },
+    {
+      "label": "Java: Run",
+      "type": "shell",
+      "command": "java -cp ../build/java Main",
+      "options": { "cwd": "${workspaceFolder}/java" },
+      "dependsOn": "Java: Build",
+      "problemMatcher": [],
+      "presentation": { "reveal": "always", "panel": "dedicated", "clear": true }
+    },
+
+    {
+      "label": "Python: Run",
+      "type": "shell",
+      "command": "python3 -u main.py",
+      "options": { "cwd": "${workspaceFolder}/python" },
+      "problemMatcher": [],
+      "presentation": { "reveal": "always", "panel": "dedicated", "clear": true }
+    },
+
+    {
+      "label": "Build All",
+      "dependsOn": ["C++: Build", "Java: Build"],
+      "dependsOrder": "parallel",
+      "problemMatcher": []
+    }
+  ]
+}

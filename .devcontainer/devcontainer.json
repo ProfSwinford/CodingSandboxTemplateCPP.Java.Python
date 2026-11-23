@@ -1,0 +1,25 @@
+{
+  "name": "Multi-Language Sandbox (C++, Java, Python)",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "remoteUser": "vscode",
+
+  "onCreateCommand": "tr -d '\\r' < .devcontainer/setup.sh | bash",
+  "waitFor": "onCreateCommand",
+
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-vscode.cpptools",
+        "vscjava.vscode-java-pack",
+        "ms-python.python",
+        "ms-python.vscode-pylance",
+        "ms-python.debugpy"
+      ],
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "bash"
+      }
+    }
+  }
+}
