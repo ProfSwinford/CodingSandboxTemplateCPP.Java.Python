@@ -1,0 +1,70 @@
+{
+  // --- Java -------------------------------------------------------------
+  // Tells the Java extension this is a plain source folder (no Maven or
+  // Gradle), so it indexes java/ and compiles to the same place as the
+  // "Java: Build" task.
+  "java.project.sourcePaths": ["java"],
+  "java.project.outputPath": "build/java",
+  "java.project.referencedLibraries": ["lib/**/*.jar"],
+  "java.configuration.updateBuildConfiguration": "automatic",
+  // Stops the "Java language server is running in Lightweight mode" prompt.
+  // Lightweight mode gives syntax highlighting only -- no build, no debug --
+  // so it has to be Standard here. This is the extension's default startup
+  // behaviour, not a resource limit of the web editor.
+  "java.server.launchMode": "Standard",
+  "java.compile.nullAnalysis.mode": "automatic",
+  "java.debug.settings.console": "integratedTerminal",
+  // Why "Debug Java" needs no preLaunchTask: the Java extension compiles
+  // before launching, so a javac task would just duplicate the work.
+  "java.debug.settings.forceBuildBeforeLaunch": true,
+
+  // --- Python -----------------------------------------------------------
+  "python.defaultInterpreterPath": "/usr/bin/python3",
+  "python.terminal.executeInFileDir": true,
+
+  // --- C++ --------------------------------------------------------------
+  "C_Cpp.default.compilerPath": "/usr/bin/g++",
+  "C_Cpp.default.cppStandard": "c++17",
+  "C_Cpp.default.includePath": ["${workspaceFolder}/cpp/**"],
+
+  // --- AI features off --------------------------------------------------
+  // Workspace-level only: a student can still change these, and only a GitHub
+  // organisation Copilot policy actually enforces it. Delete this block to
+  // allow AI features.
+  //
+  // chat.disableAIFeatures is the master switch in current VS Code and is the
+  // one that removes the chat / agent view. The rest cover older builds and
+  // individual entry points; settings a build does not recognise are ignored.
+  "chat.disableAIFeatures": true,
+  "chat.agent.enabled": false,
+  "chat.commandCenter.enabled": false,
+  "chat.extensionTools.enabled": false,
+  "chat.mcp.enabled": false,
+  "inlineChat.enabled": false,
+
+  "github.copilot.enable": {
+    "*": false,
+    "plaintext": false,
+    "markdown": false,
+    "scminput": false
+  },
+  "github.copilot.editor.enableAutoCompletions": false,
+  "github.copilot.chat.enabled": false,
+  "github.copilot.inlineSuggest.enable": false,
+  "github.copilot.nextEditSuggestions.enabled": false,
+
+  // --- Workspace --------------------------------------------------------
+  "terminal.integrated.defaultProfile.linux": "bash",
+
+  // The editor root is student/, so .devcontainer and the repo-level files
+  // are already out of reach. This just hides what is left: this .vscode
+  // folder and build output. Students see cpp/, java/, python/ and README.md.
+  "files.exclude": {
+    "**/.vscode": true,
+    "**/*.class": true,
+    "build": true
+  },
+  "files.watcherExclude": {
+    "**/build/**": true
+  }
+}

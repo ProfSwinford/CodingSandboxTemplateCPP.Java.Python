@@ -5,7 +5,18 @@
   },
   "remoteUser": "vscode",
 
-  "onCreateCommand": "tr -d '\\r' < .devcontainer/setup.sh | bash",
+  // The editor opens inside student/, so students cannot navigate above it
+  // and never see .devcontainer, .git or the repo-level files.
+  //
+  // ${localWorkspaceFolderBasename} is the repo folder name. The dev
+  // container spec defines it, but it is NOT documented as supported in
+  // GitHub Codespaces -- if it fails to substitute, the editor tries to open
+  // a path that does not exist. Verify in one codespace before handing this
+  // out; README.md -> "If the deeper root does not work" has the revert.
+  "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}/student",
+
+  // Runs with cwd = workspaceFolder (student/), so reach up one level.
+  "onCreateCommand": "tr -d '\\r' < ../.devcontainer/setup.sh | bash",
   "waitFor": "onCreateCommand",
 
   "customizations": {

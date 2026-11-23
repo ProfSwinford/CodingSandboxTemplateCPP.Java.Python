@@ -1,49 +1,23 @@
 {
-  // --- Java -------------------------------------------------------------
-  // Tells the Java extension this is a plain source folder (no Maven or
-  // Gradle), so it indexes java/ and compiles to the same place as the
-  // "Java: Build" task.
-  "java.project.sourcePaths": ["java"],
-  "java.project.outputPath": "build/java",
-  "java.project.referencedLibraries": ["lib/**/*.jar"],
-  "java.configuration.updateBuildConfiguration": "automatic",
-  "java.compile.nullAnalysis.mode": "automatic",
-  "java.debug.settings.console": "integratedTerminal",
-  // Why "Debug Java" needs no preLaunchTask: the Java extension compiles
-  // before launching, so a javac task would just duplicate the work.
-  "java.debug.settings.forceBuildBeforeLaunch": true,
-
-  // --- Python -----------------------------------------------------------
-  "python.defaultInterpreterPath": "/usr/bin/python3",
-  "python.terminal.executeInFileDir": true,
-
-  // --- C++ --------------------------------------------------------------
-  "C_Cpp.default.compilerPath": "/usr/bin/g++",
-  "C_Cpp.default.cppStandard": "c++17",
-  "C_Cpp.default.includePath": ["${workspaceFolder}/cpp/**"],
-
-  // --- Copilot off ------------------------------------------------------
-  // Workspace-level only: a student can still change these. Real enforcement
-  // needs a GitHub organisation Copilot policy. Delete this block to allow it.
-  "github.copilot.enable": {
-    "*": false,
-    "plaintext": false,
-    "markdown": false,
-    "scminput": false
-  },
-  "github.copilot.editor.enableAutoCompletions": false,
-  "github.copilot.chat.enabled": false,
-  "github.copilot.inlineSuggest.enable": false,
-  "chat.commandCenter.enabled": false,
-  "inlineChat.enabled": false,
-
-  // --- Workspace --------------------------------------------------------
-  "terminal.integrated.defaultProfile.linux": "bash",
+  // FALLBACK ONLY.
+  //
+  // When "workspaceFolder" in .devcontainer/devcontainer.json works, the
+  // editor opens inside student/ and this file is never read -- student/.vscode
+  // is the live configuration.
+  //
+  // It exists for the case where ${localWorkspaceFolderBasename} does not
+  // substitute in Codespaces and the editor falls back to the repo root. Then
+  // at least the Explorer stays clean and shows only student/.
+  //
+  // Build and debug configurations deliberately live in ONE place
+  // (student/.vscode) so there is no second copy to keep in sync.
   "files.exclude": {
-    "**/*.class": true,
-    "build": true
-  },
-  "files.watcherExclude": {
-    "**/build/**": true
+    "**/.devcontainer": true,
+    "**/.vscode": true,
+    "**/.git": true,
+    "**/.gitattributes": true,
+    "**/.gitignore": true,
+    "**/requirements.txt": true,
+    "**/README.md": true
   }
 }
